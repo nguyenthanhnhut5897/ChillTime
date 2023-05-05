@@ -1,0 +1,6 @@
+framework module Pods_ChillTimeTests {
+  umbrella header "Pods-ChillTimeTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

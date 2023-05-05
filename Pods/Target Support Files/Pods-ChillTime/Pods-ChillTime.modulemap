@@ -1,0 +1,6 @@
+framework module Pods_ChillTime {
+  umbrella header "Pods-ChillTime-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  ChillTime
+
+  Created by Nguyen Thanh Nhut on 2023/04/07.
+  
+*/
+
+"User" = "Người dùng";
+"Error" = "Lỗi";
+"Login" = "Đăng nhập";

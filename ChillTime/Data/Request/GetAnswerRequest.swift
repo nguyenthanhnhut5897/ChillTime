@@ -24,7 +24,7 @@ final class DefaultDataTransferService: DataTransferService {
 }
 
 
-func getAnAnswer(completion: @escaping (Result<CUser?, Error>) -> Void) {
+func getAnAnswer(completion: @escaping (Result<CUserDTO?, Error>) -> Void) {
         guard let url = URL(string: "https://dog.ceo/api/breeds/image/random") else {
             completion(.failure(NSError(domain: "", code: 234)))
             return
@@ -52,7 +52,7 @@ func getAnAnswer(completion: @escaping (Result<CUser?, Error>) -> Void) {
             print(data ?? "", "=============", response ?? "")
             
             if let data = data,
-               let user = try? JSONDecoder().decode(CUser.self, from: data) {
+               let user = try? JSONDecoder().decode(CUserDTO.self, from: data) {
                 print(user)
                 completion(.success(user))
             }

@@ -26,7 +26,7 @@ extension UserRepositoryHandler: UserRepository {
         getAnAnswer { result in
             switch result {
             case .success(let user):
-                completion(.success(user))
+                completion(.success(user?.transferToUser()))
             case .failure(let error):
                 completion(.failure(error))
             }

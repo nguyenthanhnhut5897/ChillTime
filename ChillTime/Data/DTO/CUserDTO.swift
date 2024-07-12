@@ -5,13 +5,13 @@
 //  Created by Thanh Nhut on 12/7/24.
 //
 
-import Foundation
+import UIKit
 
 struct CUserDTO: Codable, Equatable, Identifiable {
-    typealias Identifier = String
-    
-    let id: Identifier
+    let id: String?
     let name: String?
+    let message: [String]?
+    let status: String?
     
     func transferToUser() -> CUser {
         return CUser(id: id, name: name)

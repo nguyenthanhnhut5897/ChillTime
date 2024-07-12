@@ -5,8 +5,7 @@
 //  Created by Nguyen Thanh Nhut on 2023/04/07.
 //
 
-import Foundation
-
+import iOSAPIService
 
 final class UserRepositoryHandler {
     private let dataTransferService: DataTransferService
@@ -22,17 +21,19 @@ extension UserRepositoryHandler: UserRepository {
                completion: @escaping (Result<CUser?, Error>) -> Void) -> Cancellable?
     {
         
-        #warning("use the dataTransferService to call api like a dataTransferService.request(params)")
-        getAnAnswer { result in
+        let request = CAnswerRequest()
+        
+        ApiService.shared.send(with: request) { (result, data) in
             switch result {
-            case .success(let user):
-                completion(.success(user?.transferToUser()))
+            case .success(let ress):
+                completion(.success(ress.transferToUser()))
             case .failure(let error):
                 completion(.failure(error))
             }
         }
+        
         let task = RepositoryTask()
-//
+
 //        cache.getResponse(for: requestDTO) { result in
 //
 //            if case let .success(responseDTO?) = result {

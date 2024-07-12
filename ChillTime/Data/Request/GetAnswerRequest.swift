@@ -5,6 +5,7 @@
 //  Created by Nguyen Thanh Nhut on 2022/07/10.
 //
 import UIKit
+import iOSAPIService
 
 public extension Error {
     var code: Int { return (self as NSError).code }
@@ -23,40 +24,23 @@ protocol DataTransferService {
 final class DefaultDataTransferService: DataTransferService {
 }
 
-
-func getAnAnswer(completion: @escaping (Result<CUserDTO?, Error>) -> Void) {
-        guard let url = URL(string: "https://dog.ceo/api/breeds/image/random") else {
-            completion(.failure(NSError(domain: "", code: 234)))
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
-            
-            if let error = error {
-                print("Error with fetching films: \(error)")
-                completion(.failure(NSError(domain: "", code: 234)))
-                return
-            }
-            
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
-                print("Error with the response, unexpected status code: \(String(describing: response))")
-                completion(.failure(NSError(domain: "", code: 234)))
-                return
-            }
-            
-            print(data ?? "", "=============", response ?? "")
-            
-            if let data = data,
-               let user = try? JSONDecoder().decode(CUserDTO.self, from: data) {
-                print(user)
-                completion(.success(user))
-            }
-        })
-        
-        task.resume()
+struct CAnswerRequest: Requestable {
+    
+    typealias Response = CUserDTO
+    
+    var baseURL: URL? {
+        return URL(string: "https://dog.ceo/api/breeds/image/random")
     }
+    
+    var httpMethod: HTTPMethod {
+        return .get
+    }
+    
+    var path: String {
+        return "m_addGuestInformation"
+    }
+    
+    var headerField: [String : String] {
+        return ["Content-Type" : "application/json"]
+    }
+}

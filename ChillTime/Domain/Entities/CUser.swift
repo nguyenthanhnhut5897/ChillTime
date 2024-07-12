@@ -8,8 +8,6 @@
 import Foundation
 
 struct CUser: Codable, Equatable, Identifiable {
-    typealias Identifier = String
-    
-    let id: Identifier
-    let name: String?
+    var id: String?
+    var name: String?
 }

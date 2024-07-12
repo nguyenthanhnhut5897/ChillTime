@@ -8,6 +8,7 @@ target 'ChillTime' do
   # Pods for ChillTime
 
   pod 'SnapKit'
+  pod 'iOSAPIService', :git => 'https://github.com/nguyenthanhnhut5897/iOSAPIService.git', :tag => '1.0.3'
 
   target 'ChillTimeTests' do
     inherit! :search_paths
